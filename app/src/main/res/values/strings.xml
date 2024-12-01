@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">TaskTidy</string>
+    <string name="version">Version 1.0</string>
     <string name="create">Don\'t have an account? Click Here!</string>
+    <string name="signup">Sign in</string>
     <string name="btnlogin">Login</string>
     <string name="email">Enter Email</string>
     <string name="pass">Enter Password</string>
