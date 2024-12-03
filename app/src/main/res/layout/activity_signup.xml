@@ -11,16 +11,18 @@
         android:id="@+id/editTextTextEmailAddress2"
         android:layout_width="290dp"
         android:layout_height="50dp"
-        android:layout_marginTop="244dp"
+        android:layout_marginTop="32dp"
         android:autofillHints="Enter Email"
         android:ems="10"
         android:hint="@string/email"
         android:inputType="textEmailAddress"
+        android:background="@drawable/yellow"
+        android:padding="15dp"
         android:textColorHint="#546E7A"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView5" />
 
     <EditText
         android:id="@+id/editTextTextPassword2"
@@ -29,8 +31,11 @@
         android:layout_marginTop="20dp"
         android:autofillHints="Enter Password"
         android:ems="10"
+        android:padding="15dp"
         android:hint="@string/pass"
         android:inputType="textPassword"
+        android:background="@drawable/yellow"
+
         android:textColorHint="#546E7A"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
@@ -44,7 +49,9 @@
         android:layout_marginTop="20dp"
         android:autofillHints=""
         android:ems="10"
+        android:padding="15dp"
         android:hint="@string/confirmpass"
+        android:background="@drawable/yellow"
         android:inputType="textPassword"
         android:textColorHint="#546E7A"
         app:layout_constraintEnd_toEndOf="parent"
@@ -57,10 +64,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/signup"
+        android:padding="15dp"
+        android:textSize="18sp"
+        android:background="@drawable/violet"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword3"
         app:layout_constraintVertical_bias="0.449" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="169dp"
+        android:layout_height="154dp"
+        android:layout_marginTop="68dp"
+        android:src="@drawable/logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
