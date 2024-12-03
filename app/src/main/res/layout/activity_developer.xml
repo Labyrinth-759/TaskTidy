@@ -31,6 +31,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:background="#D6C0FF"
                 android:text="@string/john_aldrin_anthony_portento"
                 android:textColor="#A1887F"
                 android:textSize="18sp"

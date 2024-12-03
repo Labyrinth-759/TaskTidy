@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#D6C0FF"
     tools:context=".AddtaskActivity">
 
 
@@ -11,28 +12,28 @@
         android:id="@+id/enternewtask"
         android:layout_width="287dp"
         android:layout_height="59dp"
+        android:autofillHints=""
         android:hint=""
+        android:inputType=""
         android:text="@string/addtask"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="LabelFor,MissingConstraints"
-        tools:layout_editor_absoluteY="241dp"
-        android:autofillHints=""
-        android:inputType="" />
+        tools:layout_editor_absoluteY="241dp" />
 
     <EditText
         android:id="@+id/setprio"
         android:layout_width="287dp"
         android:layout_height="59dp"
         android:layout_marginTop="36dp"
+        android:autofillHints=""
         android:hint=""
+        android:inputType=""
         android:text="@string/setprio"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/enternewtask"
-        tools:ignore="LabelFor,MissingConstraints"
-        android:autofillHints=""
-        android:inputType="" />
+        tools:ignore="LabelFor,MissingConstraints" />
 
     <Button
         android:id="@+id/button5"
