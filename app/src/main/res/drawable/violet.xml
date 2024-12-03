@@ -1,18 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
+
     <!-- Hover state -->
     <item android:state_hovered="true">
-        <shape android:shape="rectangle">
-            <solid android:color="@color/light_violet" />
-            <corners android:radius="20dp" /> <!-- Adjust roundness here -->
-        </shape>
+        <layer-list>
+            <!-- Shadow layer with a soft gradient to simulate blur -->
+            <item>
+                <shape android:shape="rectangle">
+                    <gradient
+                        android:startColor="#80000000"
+                        android:endColor="#00000000"
+                        android:angle="45" />
+                    <corners android:radius="20dp" />
+                </shape>
+            </item>
+            <!-- Button layer -->
+            <item android:left="4dp" android:top="4dp">
+                <shape android:shape="rectangle">
+                    <solid android:color="@color/light_violet" />
+                    <corners android:radius="20dp" />
+                </shape>
+            </item>
+        </layer-list>
     </item>
 
     <!-- Default state -->
     <item>
-        <shape android:shape="rectangle">
-            <solid android:color="#9F46F1" />
-            <corners android:radius="100dp" /> <!-- Adjust roundness here -->
-        </shape>
+        <layer-list>
+            <!-- Shadow layer with a soft gradient to simulate blur -->
+            <item>
+                <shape android:shape="rectangle">
+                    <gradient
+                        android:startColor="#00000000"
+                        android:endColor="#80000000"
+                        android:angle="45" />
+                    <corners android:radius="100dp" />
+                </shape>
+            </item>
+            <!-- Button layer -->
+            <item android:right="3dp" android:bottom="3dp">
+                <shape android:shape="rectangle">
+                    <gradient
+                        android:startColor="#9F46F1"
+                        android:endColor="#FBF4B0"
+                        android:angle="45" />
+                    <corners android:radius="100dp" />
+                </shape>
+            </item>
+        </layer-list>
     </item>
+
 </selector>
