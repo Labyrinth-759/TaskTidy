@@ -8,7 +8,7 @@
     tools:context=".SignupActivity">
 
     <EditText
-        android:id="@+id/editTextTextEmailAddress2"
+        android:id="@+id/EmailAddress"
         android:layout_width="290dp"
         android:layout_height="50dp"
         android:layout_marginTop="32dp"
@@ -25,7 +25,7 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView5" />
 
     <EditText
-        android:id="@+id/editTextTextPassword2"
+        android:id="@+id/Password"
         android:layout_width="290dp"
         android:layout_height="50dp"
         android:layout_marginTop="20dp"
@@ -40,10 +40,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress2" />
+        app:layout_constraintTop_toBottomOf="@+id/EmailAddress" />
 
     <EditText
-        android:id="@+id/editTextTextPassword3"
+        android:id="@+id/ConfirmPassword"
         android:layout_width="290dp"
         android:layout_height="50dp"
         android:layout_marginTop="20dp"
@@ -57,10 +57,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword2" />
+        app:layout_constraintTop_toBottomOf="@+id/Password" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/Sign_in"
         android:layout_width="167dp"
         android:layout_height="wrap_content"
         android:text="@string/signup"
@@ -71,7 +71,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword3"
+        app:layout_constraintTop_toBottomOf="@+id/ConfirmPassword"
         app:layout_constraintVertical_bias="0.449" />
 
     <ImageView

@@ -1,8 +1,11 @@
 package com.example.tasktidy3D;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -10,6 +13,10 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class LoginActivity extends AppCompatActivity {
+
+    private EditText edtEmail,edtPassword;
+    private TextView txtLink;
+    private Button btnLogin;
 
     private DatabaseHelper dbHelper;
 
@@ -20,41 +27,51 @@ public class LoginActivity extends AppCompatActivity {
 
         dbHelper = new DatabaseHelper(this);
 
-        EditText emailField = findViewById(R.id.editTextTextEmailAddress);
-        EditText passwordField = findViewById(R.id.editTextTextPassword);
-        Button loginButton = findViewById(R.id.button);
-        TextView clickHere = findViewById(R.id.clickhere);
+        edtEmail = findViewById(R.id.editTextTextEmailAddress);
+        edtPassword = findViewById(R.id.editTextTextPassword);
+        btnLogin = findViewById(R.id.btnLogin);
+        txtLink = findViewById(R.id.tvclickHere);
 
-        loginButton.setOnClickListener(v -> {
-            String email = emailField.getText().toString();
-            String password = passwordField.getText().toString();
-
-            if (email.isEmpty() || password.isEmpty()) {
-                Toast.makeText(LoginActivity.this, "Please enter email and password", Toast.LENGTH_SHORT).show();
-            } else {
-                if (validateLogin(email, password)) {
-                    Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
-                    // You can replace `MainActivity.class` with your main screen activity
-                    Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
-                    startActivity(intent);
-                    finish();
-                } else {
-                    Toast.makeText(LoginActivity.this, "Invalid credentials", Toast.LENGTH_SHORT).show();
-                }
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                LogIn();
             }
         });
 
-        clickHere.setOnClickListener(v -> {
-            Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
-            startActivity(intent);
+        txtLink.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
+                startActivity(intent);
+                finish();
+            }
         });
     }
 
-    private boolean validateLogin(String email, String password) {
-        Cursor cursor = dbHelper.getReadableDatabase().rawQuery(
-                "SELECT * FROM Users WHERE email=? AND password=?", new String[]{email, password});
-        boolean isValid = cursor.getCount() > 0;
-        cursor.close();
-        return isValid;
+    private void LogIn(){
+        String email = edtEmail.getText().toString().trim();
+        String password = edtPassword.getText().toString().trim();
+        if(email.isEmpty() || password.isEmpty()){
+            showMessage("All Fields are Required!");
+        }else{
+            if(dbHelper.checkUser(email, password)){
+                SharedPreferences preferences = getSharedPreferences("user_prefs", MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putString("user_email", email);
+                editor.apply();
+
+                showMessage("Log-In Successful");
+                startActivity(new Intent(LoginActivity.this, DashboardActivity.class));
+                finish();
+            }else{
+                showMessage("Invalid Credentials!");
+            }
+        }
+    }
+
+    private void showMessage(String message){
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 }
+

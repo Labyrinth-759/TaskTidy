@@ -1,7 +1,8 @@
 package com.example.tasktidy3D;
 
-import android.database.Cursor;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -9,6 +10,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class SignupActivity extends AppCompatActivity {
 
+    private EditText edtEmail,edtPassword, edtConfirmPass;
+    private Button signinBtn;
     private DatabaseHelper dbHelper;
 
     @Override
@@ -16,45 +19,39 @@ public class SignupActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
+        edtEmail = findViewById(R.id.EmailAddress);
+        edtPassword = findViewById(R.id.Password);
+        edtConfirmPass = findViewById(R.id.ConfirmPassword);
+        signinBtn  = findViewById(R.id.Sign_in);
+
         dbHelper = new DatabaseHelper(this);
 
-        EditText emailField = findViewById(R.id.editTextTextEmailAddress2);
-        EditText passwordField = findViewById(R.id.editTextTextPassword2);
-        EditText confirmPasswordField = findViewById(R.id.editTextTextPassword3);
-        Button signupButton = findViewById(R.id.button2);
-
-        signupButton.setOnClickListener(v -> {
-            String email = emailField.getText().toString();
-            String password = passwordField.getText().toString();
-            String confirmPassword = confirmPasswordField.getText().toString();
-
-            if (email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
-                Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show();
-            } else if (!password.equals(confirmPassword)) {
-                Toast.makeText(this, "Passwords do not match", Toast.LENGTH_SHORT).show();
-            } else {
-                if (isUserExists(email)) {
-                    Toast.makeText(this, "User already exists", Toast.LENGTH_SHORT).show();
-                } else {
-                    // Insert user into the database
-                    boolean isInserted = dbHelper.insertUser(email, password);
-                    if (isInserted) {
-                        Toast.makeText(this, "User Registered Successfully", Toast.LENGTH_SHORT).show();
-                        finish(); // Close SignupActivity and go back to LoginActivity
-                    } else {
-                        Toast.makeText(this, "Registration Failed. Try again", Toast.LENGTH_SHORT).show();
-                    }
-                }
+        signinBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                RegisterUser();
             }
         });
+}
+    private void RegisterUser(){
+        String email = edtEmail.getText().toString().trim();
+        String password = edtPassword.getText().toString().trim();
+        String confirmPass = edtConfirmPass.getText().toString().trim();
+
+        if(email.isEmpty() || password.isEmpty() || confirmPass.isEmpty()){
+            showMessage("All Fields are Required!");
+        }else if(!password.equals(confirmPass)){
+            edtConfirmPass.setError("Passwords Do not Match!");
+            edtConfirmPass.requestFocus();
+        }else{
+            dbHelper.AddUser(email, password);
+            Intent gotoLogIn = new Intent(SignupActivity.this, LoginActivity.class);
+            startActivity(gotoLogIn);
+            finish();
+        }
     }
 
-    private boolean isUserExists(String email) {
-        // Query the database to check if the email already exists
-        Cursor cursor = dbHelper.getReadableDatabase().rawQuery(
-                "SELECT * FROM Users WHERE email=?", new String[]{email});
-        boolean userExists = cursor.getCount() > 0;
-        cursor.close();
-        return userExists;
+    private void showMessage(String message){
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 }
