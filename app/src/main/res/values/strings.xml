@@ -14,4 +14,19 @@
     <string name="addtask">Enter New Task</string>
     <string name="setprio">Set Priority</string>
     <string name="btncomplete">Completed Task</string>
+    <string name="aaronoriasel321_gmail_com">aaronoriasel321@gmail.com</string>
+    <string name="aaron_oriasel">Aaron Oriasel</string>
+    <string name="role_frontend_developer">Role: Frontend Developer</string>
+    <string name="nielosinsao90_gmail_com">NielOsinsao90@gmail.com</string>
+    <string name="niel_osinsao">Niel Osinsao</string>
+    <string name="role_frontend_developer_backend_developer">Role: Frontend Developer | Backend Developer</string>
+    <string name="valezuelajoshua579_gmail_com">valezuelajoshua579@gmail.com</string>
+    <string name="joshua_valenzuela">Joshua Valenzuela</string>
+    <string name="johnanthony4102_gmail_com">JohnAnthony4102@gmail.com</string>
+    <string name="john_aldrin_anthony_portento">John Aldrin Anthony Portento</string>
+    <string name="role_backend_developer">Role: Backend Developer</string>
+    <string name="aldrin">Aldrin</string>
+    <string name="joshua">Joshua</string>
+    <string name="aaron">Aaron</string>
+    <string name="niel">Niel</string>
 </resources>
