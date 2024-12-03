@@ -21,26 +21,28 @@
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@android:drawable/ic_input_add" />
 
-
-    <Button
-        android:id="@+id/button3"
+    <TextView
+        android:id="@+id/viewtask"
         android:layout_width="342dp"
         android:layout_height="84dp"
-        android:layout_marginTop="112dp"
+        android:layout_marginTop="140dp"
         android:background="@drawable/button_background"
+        android:gravity="center"
         android:text="@string/btnview"
+        android:textAlignment="center"
         android:textColor="@android:color/white"
-        android:textSize="20sp"
+        android:textSize="25sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3"
-        tools:ignore="SpeakableTextPresentCheck" />
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <Button
         android:id="@+id/button4"
         android:layout_width="342dp"
         android:layout_height="84dp"
+        android:layout_marginBottom="168dp"
         android:background="@drawable/button4"
         android:text="@string/btncomplete"
         android:textColor="@android:color/white"
@@ -49,9 +51,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button3"
-        app:layout_constraintVertical_bias="0.121"
-        tools:ignore="SpeakableTextPresentCheck" />
+        app:layout_constraintTop_toBottomOf="@+id/viewtask"
+        app:layout_constraintVertical_bias="0.411"
+        tools:ignore="SpeakableTextPresentCheck,TextContrastCheck" />
 
     <TextView
         android:id="@+id/textView3"
