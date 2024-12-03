@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <!-- Hover state -->
     <item android:state_hovered="true">
         <shape android:shape="rectangle">
             <solid android:color="#FFF280" />
@@ -8,7 +7,6 @@
         </shape>
     </item>
 
-    <!-- Default state -->
     <item>
         <shape android:shape="rectangle">
             <solid android:color="#FBF4B0" />
