@@ -13,7 +13,7 @@
         android:layout_height="58dp"
         android:layout_marginTop="32dp"
         android:autofillHints=""
-        android:background="@drawable/yellow"
+        android:background="@drawable/yellow2"
         android:gravity="center_vertical"
         android:padding="15dp"
         android:ems="10"
@@ -30,7 +30,7 @@
         android:layout_width="297dp"
         android:layout_height="58dp"
         android:layout_marginTop="32dp"
-        android:background="@drawable/yellow"
+        android:background="@drawable/yellow2"
         android:gravity="center_vertical"
         android:padding="15dp"
         android:ems="10"
@@ -69,6 +69,20 @@
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.364"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword" />
+
+    <TextView
+        android:id="@+id/clickhere2"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:layout_marginTop="8dp"
+        android:clickable="true"
+        android:text="Click Here!"
+        android:textSize="12sp"
+        android:textColor="#837604"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.562"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword" />
 
