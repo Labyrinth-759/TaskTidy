@@ -6,4 +6,27 @@
     android:layout_height="match_parent"
     tools:context=".AddtaskActivity">
 
+
+    <EditText
+        android:id="@+id/enternewtask"
+        android:layout_width="287dp"
+        android:layout_height="59dp"
+        android:hint=""
+        android:text="@string/addtask"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="241dp" />
+
+    <EditText
+        android:id="@+id/setprio"
+        android:layout_width="287dp"
+        android:layout_height="59dp"
+        android:layout_marginTop="36dp"
+        android:hint=""
+        android:text="@string/setprio"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/enternewtask"
+        tools:ignore="MissingConstraints" />
 </androidx.constraintlayout.widget.ConstraintLayout>
