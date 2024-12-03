@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/download__10_"
+    android:background="@drawable/dashbg"
     tools:context=".Splash">
 
     <ImageView
@@ -25,7 +25,7 @@
         android:layout_width="150dp"
         android:layout_height="20dp"
         android:layout_marginTop="272dp"
-        android:indeterminateTint="#19DA03"
+        android:indeterminateTint="#16E886"
         android:indeterminateTintMode="src_atop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
