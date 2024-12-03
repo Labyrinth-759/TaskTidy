@@ -1,9 +1,175 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DeveloperActivity">
+    android:orientation="vertical"
+    tools:context=".DeveloperActivity" >
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:id="@+id/imageViewp1"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/profile1" />
+
+            <TextView
+                android:id="@+id/developer_name1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="John Aldrin Anthony Portento"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/developer_intro1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="8dp"
+                android:text="JohnAnthony4102@gmail.com"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:id="@+id/developer_role1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="4dp"
+                android:text="Role: Frontend Developer | Backend Developer"
+                android:textColor="@color/white"
+                android:textStyle="italic" />
+
+            <ImageView
+                android:id="@+id/imageViewp4"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/profile4" />
+
+            <TextView
+                android:id="@+id/developer_name4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Joshua Valenzuela"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/developer_intro4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="8dp"
+                android:text="valezuelajoshua579@gmail.com"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:id="@+id/developer_role4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="4dp"
+                android:text="Role: Frontend Developer | Backend Developer"
+                android:textColor="@color/white"
+                android:textStyle="italic" />
+
+            <ImageView
+                android:id="@+id/imageViewp2"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/profile2" />
+
+            <TextView
+                android:id="@+id/developer_name2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Niel Osinsao"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/developer_intro2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="8dp"
+                android:text="NielOsinsao90@gmail.com"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:id="@+id/developer_role2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="4dp"
+                android:text="Role: Frontend Developer"
+                android:textColor="@color/white"
+                android:textStyle="italic" />
+
+            <ImageView
+                android:id="@+id/imageViewp3"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/profile3" />
+
+            <TextView
+                android:id="@+id/developer_name3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Aaron Oriasel"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/developer_intro3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="8dp"
+                android:text="aaronoriasel321@gmail.com"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:id="@+id/developer_role3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="4dp"
+                android:text="Role: Backend Developer"
+                android:textColor="@color/white"
+                android:textStyle="italic" />
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>
+

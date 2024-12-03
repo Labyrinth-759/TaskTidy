@@ -25,10 +25,10 @@
         android:id="@+id/button3"
         android:layout_width="342dp"
         android:layout_height="84dp"
-        android:layout_marginTop="88dp"
+        android:layout_marginTop="80dp"
         android:background="@drawable/view"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.507"
+        app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3"
         tools:ignore="SpeakableTextPresentCheck" />
