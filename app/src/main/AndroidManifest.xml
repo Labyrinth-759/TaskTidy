@@ -13,13 +13,6 @@
         android:theme="@style/Theme.TaskTidy"
         tools:targetApi="31">
         <activity
-            android:name=".HelpActivit"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
             android:name=".DeveloperActivity"
             android:exported="false">
             <meta-data
