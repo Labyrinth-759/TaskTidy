@@ -21,54 +21,37 @@
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@android:drawable/ic_input_add" />
 
+
     <Button
         android:id="@+id/button3"
         android:layout_width="342dp"
         android:layout_height="84dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="212dp"
         android:background="@drawable/button_background"
         android:text="@string/btnview"
-        android:textSize="20sp"
         android:textColor="@android:color/white"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3"
         tools:ignore="SpeakableTextPresentCheck" />
-
 
     <Button
         android:id="@+id/button4"
         android:layout_width="342dp"
         android:layout_height="84dp"
-        android:layout_marginTop="44dp"
         android:background="@drawable/button4"
         android:text="@string/btncomplete"
-        android:textSize="20sp"
         android:textColor="@android:color/white"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.507"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button6"
-        app:layout_constraintVertical_bias="0.049"
-        tools:ignore="SpeakableTextPresentCheck" />
-
-    <Button
-        android:id="@+id/button6"
-        android:layout_width="342dp"
-        android:layout_height="84dp"
-        android:layout_marginTop="48dp"
-        android:background="@drawable/button6"
-        android:text="Category"
-        android:textSize="20sp"
-        android:textColor="@android:color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.509"
+        app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button3"
+        app:layout_constraintVertical_bias="0.121"
         tools:ignore="SpeakableTextPresentCheck" />
-
 
     <TextView
         android:id="@+id/textView3"
