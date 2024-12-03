@@ -8,8 +8,10 @@
     <string name="pass">Enter Password</string>
     <string name="confirmpass">Confirm Password</string>
     <string name="add">Add</string>
+    <string name="btnview">View Task</string>
     <string name="db">Dashboard</string>
     <string name="todo">Icon</string>
     <string name="addtask">Enter New Task</string>
     <string name="setprio">Set Priority</string>
+    <string name="btncomplete">Completed Task</string>
 </resources>

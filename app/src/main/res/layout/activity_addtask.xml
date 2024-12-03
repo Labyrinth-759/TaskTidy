@@ -15,8 +15,10 @@
         android:text="@string/addtask"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteY="241dp" />
+        tools:ignore="LabelFor,MissingConstraints"
+        tools:layout_editor_absoluteY="241dp"
+        android:autofillHints=""
+        android:inputType="" />
 
     <EditText
         android:id="@+id/setprio"
@@ -28,5 +30,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/enternewtask"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="LabelFor,MissingConstraints"
+        android:autofillHints=""
+        android:inputType="" />
+
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="144dp"
+        android:text="@string/add"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/setprio" />
 </androidx.constraintlayout.widget.ConstraintLayout>
