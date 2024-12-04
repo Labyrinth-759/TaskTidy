@@ -56,15 +56,15 @@ public class LoginActivity extends AppCompatActivity {
             showMessage("All Fields are Required!");
         }else{
             if(dbHelper.checkUser(email, password)){
-                // Store the logged-in user's email in SharedPreferences
+                // Store the logged-in user's email
                 SharedPreferences preferences = getSharedPreferences("user_prefs", MODE_PRIVATE);
                 SharedPreferences.Editor editor = preferences.edit();
-                editor.putString("user_email", email); // Save the user's email
+                editor.putString("user_email", email);
                 editor.apply();
 
                 showMessage("Log-In Successful");
 
-                // Navigate to Dashboard or main activity after login
+                // Navigate to Dashboard
                 startActivity(new Intent(LoginActivity.this, DashboardActivity.class));
                 finish();
             }else{

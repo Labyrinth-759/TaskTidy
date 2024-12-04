@@ -20,7 +20,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     static final String COLUMN_TASK_PRIO = "priority";
     static final String COLUMN_TASK_DRP = "description";
     private static final String COLUMN_USER_EMAIL = "user_email";
-    private static final String COLUMN_IS_DONE = "is_done"; // Add is_done column
+    private static final String COLUMN_IS_DONE = "is_done";
 
     // Completed Task Table
     private static final String TABLE_COMPLETED_TASKS = "CompletedTasks";
@@ -49,7 +49,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 COLUMN_TASK_PRIO + " INTEGER, " +
                 COLUMN_TASK_DRP + " TEXT, " +
                 COLUMN_USER_EMAIL + " TEXT, " +
-                COLUMN_IS_DONE + " INTEGER DEFAULT 0)";  // Adding 'is_done' column
+                COLUMN_IS_DONE + " INTEGER DEFAULT 0)";
         db.execSQL(CREATE_TASKS_TABLE);
 
         // Create CompletedTasks Table with user_email
@@ -65,7 +65,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         if (oldVersion < 4) {
             try {
-                // Add the 'is_done' column to the Tasks table if it doesn't exist
                 db.execSQL("ALTER TABLE " + TABLE_TASKS + " ADD COLUMN " + COLUMN_IS_DONE + " INTEGER DEFAULT 0;");
             } catch (Exception e) {
                 Log.e("Database Upgrade", "Error upgrading database to version 4: " + e.getMessage());
@@ -138,7 +137,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         // Update the task to be marked as completed in Tasks table
         ContentValues updateValues = new ContentValues();
-        updateValues.put(COLUMN_IS_DONE, 1);  // Mark the task as done in the Tasks table
+        updateValues.put(COLUMN_IS_DONE, 1);
         int rowsUpdated = db.update(TABLE_TASKS, updateValues, COLUMN_TASK_ID + " = ?", new String[]{String.valueOf(taskId)});
 
         // Delete the task from the Tasks table
@@ -152,7 +151,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void markTaskAsDone(int taskId) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(COLUMN_IS_DONE, 1);  // Mark the task as done
+        values.put(COLUMN_IS_DONE, 1);
 
         int rowsUpdated = db.update(TABLE_TASKS, values, COLUMN_TASK_ID + " = ?", new String[]{String.valueOf(taskId)});
 
