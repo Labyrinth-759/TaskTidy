@@ -33,23 +33,29 @@ public class SignupActivity extends AppCompatActivity {
             }
         });
 }
-    private void RegisterUser(){
+    private void RegisterUser() {
         String email = edtEmail.getText().toString().trim();
         String password = edtPassword.getText().toString().trim();
         String confirmPass = edtConfirmPass.getText().toString().trim();
 
-        if(email.isEmpty() || password.isEmpty() || confirmPass.isEmpty()){
+        if (email.isEmpty() || password.isEmpty() || confirmPass.isEmpty()) {
             showMessage("All Fields are Required!");
-        }else if(!password.equals(confirmPass)){
+        } else if (!password.equals(confirmPass)) {
             edtConfirmPass.setError("Passwords Do not Match!");
             edtConfirmPass.requestFocus();
-        }else{
-            dbHelper.AddUser(email, password);
-            Intent gotoLogIn = new Intent(SignupActivity.this, LoginActivity.class);
-            startActivity(gotoLogIn);
-            finish();
+        } else {
+            // Add user to the database
+            boolean isUserAdded = dbHelper.AddUser(email, password);
+            if (isUserAdded) {
+                Intent gotoLogIn = new Intent(SignupActivity.this, LoginActivity.class);
+                startActivity(gotoLogIn);
+                finish();
+            } else {
+                showMessage("Failed to register user!");
+            }
         }
     }
+
 
     private void showMessage(String message){
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();

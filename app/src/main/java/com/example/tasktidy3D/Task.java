@@ -1,31 +1,43 @@
 package com.example.tasktidy3D;
 
 public class Task {
-    private int id;
-    private String name;
-    private int priority;
+    private int taskId;
+    private String taskName;
     private String description;
+    private int priority;
+    private boolean isDone;  // Add this field
 
-    public Task(int id, String name, int priority, String description) {
-        this.id = id;
-        this.name = name;
-        this.priority = priority;
+    public Task(int taskId, String taskName, String description, int priority, boolean isDone) {
+        this.taskId = taskId;
+        this.taskName = taskName;
         this.description = description;
+        this.priority = priority;
+        this.isDone = isDone;
     }
 
-    public int getId() {
-        return id;
+
+    // Getters
+    public int getTaskId() {
+        return taskId;
     }
 
-    public String getName() {
-        return name;
+    public String getTaskName() {
+        return taskName;
+    }
+
+    public String getDescription() {
+        return description;
     }
 
     public int getPriority() {
         return priority;
     }
 
-    public String getDescription() {
-        return description;
+    public boolean isDone() {  // Add this getter method
+        return isDone;
+    }
+
+    public void setDone(boolean done) {  // Add this setter method
+        isDone = done;
     }
 }

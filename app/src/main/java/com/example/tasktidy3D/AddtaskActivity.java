@@ -1,5 +1,6 @@
 package com.example.tasktidy3D;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -58,8 +59,17 @@ public class AddtaskActivity extends AppCompatActivity {
             return;
         }
 
-        // Insert task into the database
-        boolean isInserted = dbHelper.insertTask(taskName, priority, description);
+        // Get the logged-in user's email from SharedPreferences
+        SharedPreferences preferences = getSharedPreferences("user_prefs", MODE_PRIVATE);
+        String userEmail = preferences.getString("user_email", null);
+
+        if (userEmail == null) {
+            Toast.makeText(this, "User not logged in", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // Insert task into the database with the user's email
+        boolean isInserted = dbHelper.insertTask(taskName, priority, description, userEmail);
 
         if (isInserted) {
             Toast.makeText(this, "Task added successfully", Toast.LENGTH_SHORT).show();

@@ -14,16 +14,16 @@
         android:id="@+id/enternewtask"
         android:layout_width="287dp"
         android:layout_height="59dp"
+        android:layout_marginTop="16dp"
         android:autofillHints=""
-        android:hint=""
+        android:background="@drawable/yellow2"
         android:inputType=""
         android:padding="15dp"
-        android:text="@string/addtask"
-        android:background="@drawable/yellow2"
+        android:hint="@string/addtask"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="LabelFor,MissingConstraints"
-        tools:layout_editor_absoluteY="224dp" />
+        app:layout_constraintTop_toBottomOf="@+id/textView7"
+        tools:ignore="LabelFor,MissingConstraints" />
 
     <EditText
         android:id="@+id/setprio"
@@ -32,10 +32,9 @@
         android:layout_marginTop="16dp"
         android:autofillHints=""
         android:background="@drawable/yellow2"
-        android:hint=""
         android:inputType=""
         android:padding="15dp"
-        android:text="@string/setprio"
+        android:hint="@string/setprio"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/enternewtask"
@@ -60,12 +59,14 @@
         android:id="@+id/btnTask"
         android:layout_width="167dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="196dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/violet"
         android:text="@string/add"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/setprio" />
+        app:layout_constraintTop_toBottomOf="@+id/taskDescription"
+        app:layout_constraintVertical_bias="0.237" />
 
     <TextView
         android:id="@+id/textView7"

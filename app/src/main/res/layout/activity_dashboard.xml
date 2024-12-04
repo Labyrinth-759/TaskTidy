@@ -7,11 +7,22 @@
     android:background="@drawable/dashboard"
     tools:context=".DashboardActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
     <TextView
         android:id="@+id/viewtask"
         android:layout_width="342dp"
         android:layout_height="84dp"
-        android:layout_marginTop="220dp"
+        android:layout_marginTop="168dp"
         android:background="@drawable/button_background"
         android:gravity="center"
         android:text="@string/btnview"
@@ -26,7 +37,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/btnCompleted"
         android:layout_width="342dp"
         android:layout_height="84dp"
         android:layout_marginBottom="168dp"
@@ -39,7 +50,7 @@
         app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/viewtask"
-        app:layout_constraintVertical_bias="0.273"
+        app:layout_constraintVertical_bias="0.567"
         tools:ignore="SpeakableTextPresentCheck,TextContrastCheck" />
 
     <TextView
@@ -53,7 +64,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.133"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <View
         android:id="@+id/view2"

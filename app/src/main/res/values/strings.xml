@@ -41,4 +41,6 @@
     <string name="about1desc">\t\t\t\t\tTask Manager helps you stay organized and focused. With an intuitive user interface, customizable task views, and a simple way to track your progress, this app is the perfect companion for anyone looking to increase their productivity. Whether you’re managing personal tasks or a team project, Task Manager helps you stay in control.</string>
     <string name="task_list">Task List</string>
     <string name="add_task">Add Task</string>
+    <string name="delete">Delete</string>
+    <string name="done">Done</string>
 </resources>

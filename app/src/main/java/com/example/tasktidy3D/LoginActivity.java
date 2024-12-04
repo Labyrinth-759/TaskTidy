@@ -56,12 +56,15 @@ public class LoginActivity extends AppCompatActivity {
             showMessage("All Fields are Required!");
         }else{
             if(dbHelper.checkUser(email, password)){
+                // Store the logged-in user's email in SharedPreferences
                 SharedPreferences preferences = getSharedPreferences("user_prefs", MODE_PRIVATE);
                 SharedPreferences.Editor editor = preferences.edit();
-                editor.putString("user_email", email);
+                editor.putString("user_email", email); // Save the user's email
                 editor.apply();
 
                 showMessage("Log-In Successful");
+
+                // Navigate to Dashboard or main activity after login
                 startActivity(new Intent(LoginActivity.this, DashboardActivity.class));
                 finish();
             }else{
@@ -69,6 +72,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         }
     }
+
 
     private void showMessage(String message){
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
