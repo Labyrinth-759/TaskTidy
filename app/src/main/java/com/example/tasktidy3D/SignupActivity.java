@@ -8,6 +8,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
+import org.mobileapp.tasktidy.R;
+
 public class SignupActivity extends AppCompatActivity {
 
     private EditText edtEmail,edtPassword, edtConfirmPass;

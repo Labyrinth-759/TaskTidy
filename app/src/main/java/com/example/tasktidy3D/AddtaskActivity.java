@@ -9,6 +9,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import org.mobileapp.tasktidy.R;
+
 public class AddtaskActivity extends AppCompatActivity {
 
     private EditText newtask, priorety, taskdesc;

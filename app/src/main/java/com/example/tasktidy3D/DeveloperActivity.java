@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+import org.mobileapp.tasktidy.R;
+
 public class DeveloperActivity extends AppCompatActivity {
 
     @Override
