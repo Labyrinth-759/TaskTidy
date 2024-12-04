@@ -6,6 +6,8 @@ import static com.example.tasktidy3D.DatabaseHelper.COLUMN_TASK_NAME;
 import static com.example.tasktidy3D.DatabaseHelper.COLUMN_TASK_PRIO;
 
 import android.content.Intent;
+
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.Toolbar;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -97,10 +99,20 @@ public class DashboardActivity extends AppCompatActivity {
                 startActivity(new Intent(DashboardActivity.this, DeveloperActivity.class));
                 return true;
             case R.id.menu_exit:
-                finish();
+                showExitConfirmationDialog();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
+
+    private void showExitConfirmationDialog() {
+        new AlertDialog.Builder(this)
+                .setTitle("Exit Confirmation")
+                .setMessage("Are you sure you want to exit?")
+                .setPositiveButton("Yes", (dialog, which) -> finish())
+                .setNegativeButton("No", (dialog, which) -> dialog.dismiss())
+                .show();
+    }
+
 }
