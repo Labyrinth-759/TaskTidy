@@ -1,13 +1,16 @@
 package com.example.tasktidy3D;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-import android.content.Context;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 import java.util.List;
 
 public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder> {
@@ -29,46 +32,36 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
     }
 
     @Override
-    public void onBindViewHolder(TaskViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull TaskViewHolder holder, int position) {
         Task task = taskList.get(position);
+
         holder.textTaskName.setText(task.getTaskName());
         holder.textTaskPriority.setText("Priority: " + task.getPriority());
         holder.textTaskDescription.setText(task.getDescription());
 
-        // Done button action
-        holder.buttonDone.setOnClickListener(v -> {
-            // Move task to completed tasks
-            boolean moved = dbHelper.moveToCompleted(
-                    task.getTaskId(),
-                    task.getTaskName(),
-                    task.getPriority(),
-                    task.getDescription()
-            );
+        if (task.isDone()) {
+            holder.buttonDone.setVisibility(View.GONE);
+            holder.buttonDone.setEnabled(false);
+        } else {
+            holder.buttonDone.setVisibility(View.VISIBLE);
+            holder.buttonDone.setEnabled(true);
+            holder.buttonDone.setOnClickListener(v -> {
+                // Move task to completed when the "Done" button is clicked
+                if (context instanceof ViewActivity) {
+                    ((ViewActivity) context).markTaskAsDoneAndShowCompleted(task);
+                } else {
+                    Toast.makeText(context, "Context is not ViewActivity", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
 
-            if (moved) {
-                // Remove from the current task list
-                taskList.remove(position);
-                notifyItemRemoved(position);
-                Toast.makeText(context, "Task marked as completed", Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(context, "Failed to mark task as completed", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        // Delete button action
         holder.buttonDelete.setOnClickListener(v -> {
-            // Delete task from database
             dbHelper.deleteTask(task.getTaskId());
-
-            // Remove task from the list and update RecyclerView
             taskList.remove(position);
             notifyItemRemoved(position);
             Toast.makeText(context, "Task deleted", Toast.LENGTH_SHORT).show();
         });
     }
-
-
-
 
     @Override
     public int getItemCount() {
@@ -89,5 +82,3 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         }
     }
 }
-
-

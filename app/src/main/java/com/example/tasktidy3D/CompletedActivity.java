@@ -15,34 +15,38 @@ public class CompletedActivity extends AppCompatActivity {
 
     private DatabaseHelper dbHelper;
     private RecyclerView recyclerViewCompletedTasks;
+    private TaskAdapter adapter;
+    private List<Task> completedTaskList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.completedtask);
+        setContentView(R.layout.activity_completedtask);
 
         dbHelper = new DatabaseHelper(this);
         recyclerViewCompletedTasks = findViewById(R.id.recyclerViewCompletedTasks);
 
-        // Load completed tasks from the database
-        List<Task> completedTaskList = getCompletedTasksFromDatabase();
+        recyclerViewCompletedTasks.setLayoutManager(new LinearLayoutManager(this));
+
+        loadCompletedTasks();
+    }
+
+    private void loadCompletedTasks() {
+        completedTaskList = getCompletedTasksFromDatabase();
 
         if (completedTaskList.isEmpty()) {
             Toast.makeText(this, "No completed tasks available", Toast.LENGTH_SHORT).show();
         }
 
-        // Set up RecyclerView
-        TaskAdapter adapter = new TaskAdapter(completedTaskList, this);
-        recyclerViewCompletedTasks.setLayoutManager(new LinearLayoutManager(this));
+        adapter = new TaskAdapter(completedTaskList, this);
         recyclerViewCompletedTasks.setAdapter(adapter);
     }
 
     private List<Task> getCompletedTasksFromDatabase() {
         List<Task> taskList = new ArrayList<>();
-
-        try {
-            Cursor cursor = dbHelper.getCompletedTasks();
-            if (cursor != null) {
+        Cursor cursor = dbHelper.getCompletedTasks();
+        if (cursor != null) {
+            try {
                 while (cursor.moveToNext()) {
                     int id = cursor.getInt(0);
                     String name = cursor.getString(1);
@@ -51,13 +55,17 @@ public class CompletedActivity extends AppCompatActivity {
 
                     taskList.add(new Task(id, name, description, priority, true));
                 }
+            } finally {
                 cursor.close();
             }
-        } catch (Exception e) {
-            e.printStackTrace();  // Log the exception
-            Toast.makeText(this, "Error loading tasks", Toast.LENGTH_SHORT).show();
         }
-
         return taskList;
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadCompletedTasks();
+    }
+
 }

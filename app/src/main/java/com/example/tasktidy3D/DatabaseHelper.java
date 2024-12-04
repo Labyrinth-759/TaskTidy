@@ -11,7 +11,7 @@ import android.util.Log;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "TaskTidyDB";
-    private static final int DATABASE_VERSION = 3;
+    private static final int DATABASE_VERSION = 4;
 
     // Task Table
     private static final String TABLE_TASKS = "Tasks";
@@ -20,6 +20,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     static final String COLUMN_TASK_PRIO = "priority";
     static final String COLUMN_TASK_DRP = "description";
     private static final String COLUMN_USER_EMAIL = "user_email";
+    private static final String COLUMN_IS_DONE = "is_done"; // Add is_done column
 
     // Completed Task Table
     private static final String TABLE_COMPLETED_TASKS = "CompletedTasks";
@@ -41,13 +42,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "password TEXT)";
         db.execSQL(CREATE_USERS_TABLE);
 
-        // Create Tasks Table with user_email
+        // Create Tasks Table with user_email and is_done column
         String CREATE_TASKS_TABLE = "CREATE TABLE " + TABLE_TASKS + " (" +
                 COLUMN_TASK_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 COLUMN_TASK_NAME + " TEXT, " +
                 COLUMN_TASK_PRIO + " INTEGER, " +
                 COLUMN_TASK_DRP + " TEXT, " +
-                COLUMN_USER_EMAIL + " TEXT)";
+                COLUMN_USER_EMAIL + " TEXT, " +
+                COLUMN_IS_DONE + " INTEGER DEFAULT 0)";  // Adding 'is_done' column
         db.execSQL(CREATE_TASKS_TABLE);
 
         // Create CompletedTasks Table with user_email
@@ -61,27 +63,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        if (oldVersion < 3) {
+        if (oldVersion < 4) {
             try {
-                Cursor cursor = db.rawQuery("PRAGMA table_info(" + TABLE_TASKS + ")", null);
-                boolean columnExists = false;
-
-                if (cursor != null && cursor.moveToFirst()) {
-                    do {
-                        @SuppressLint("Range") String columnName = cursor.getString(cursor.getColumnIndex("name"));
-                        if (COLUMN_USER_EMAIL.equals(columnName)) {
-                            columnExists = true;
-                            break;
-                        }
-                    } while (cursor.moveToNext());
-                    cursor.close();
-                }
-
-                if (!columnExists) {
-                    db.execSQL("ALTER TABLE " + TABLE_TASKS + " ADD COLUMN " + COLUMN_USER_EMAIL + " TEXT;");
-                }
+                // Add the 'is_done' column to the Tasks table if it doesn't exist
+                db.execSQL("ALTER TABLE " + TABLE_TASKS + " ADD COLUMN " + COLUMN_IS_DONE + " INTEGER DEFAULT 0;");
             } catch (Exception e) {
-                Log.e("Database Upgrade", "Error upgrading database to version 3: " + e.getMessage());
+                Log.e("Database Upgrade", "Error upgrading database to version 4: " + e.getMessage());
             }
         }
     }
@@ -97,12 +84,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return result != -1;
     }
 
-
     public boolean checkUser(String email, String password) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM Users WHERE email = ? AND password = ?", new String[]{email, password});
 
-        // Check if the cursor has any rows, indicating a match for email and password
         if (cursor != null && cursor.moveToFirst()) {
             cursor.close();
             return true;
@@ -112,14 +97,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-
     public Cursor getUserTasks(String userEmail) {
         SQLiteDatabase db = this.getReadableDatabase();
         return db.rawQuery("SELECT * FROM " + TABLE_TASKS + " WHERE " + COLUMN_USER_EMAIL + " = ?", new String[]{userEmail});
     }
 
-
-    // Add task to the Tasks table with user email
     public boolean insertTask(String taskName, int priority, String description, String userEmail) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -133,18 +115,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return result != -1;
     }
 
-    // Query to get tasks from the Tasks table
     public Cursor getAllTasks() {
         SQLiteDatabase db = this.getReadableDatabase();
         return db.rawQuery("SELECT * FROM " + TABLE_TASKS, null);
     }
 
-
-    // Method to move task to CompletedTasks table
     public boolean moveToCompleted(int taskId, String taskName, int priority, String description) {
         SQLiteDatabase db = this.getWritableDatabase();
 
-        // Insert task into CompletedTasks table
+        // Insert the task into CompletedTasks table
         ContentValues values = new ContentValues();
         values.put(COLUMN_COMPLETED_TASK_ID, taskId);
         values.put(COLUMN_COMPLETED_TASK_NAME, taskName);
@@ -157,25 +136,42 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return false;
         }
 
+        // Update the task to be marked as completed in Tasks table
+        ContentValues updateValues = new ContentValues();
+        updateValues.put(COLUMN_IS_DONE, 1);  // Mark the task as done in the Tasks table
+        int rowsUpdated = db.update(TABLE_TASKS, updateValues, COLUMN_TASK_ID + " = ?", new String[]{String.valueOf(taskId)});
+
         // Delete the task from the Tasks table
         int rowsDeleted = db.delete(TABLE_TASKS, COLUMN_TASK_ID + " = ?", new String[]{String.valueOf(taskId)});
+
         db.close();
-        return rowsDeleted > 0;
+        return rowsUpdated > 0 && rowsDeleted > 0;
     }
 
-    public void updateTaskStatus(int taskId, boolean isDone) {
+
+    public void markTaskAsDone(int taskId) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put("status", isDone ? 1 : 0);  // Assuming "status" is 1 for done, 0 for not
-        db.update("tasks", values, "id = ?", new String[]{String.valueOf(taskId)});
+        values.put(COLUMN_IS_DONE, 1);  // Mark the task as done
+
+        int rowsUpdated = db.update(TABLE_TASKS, values, COLUMN_TASK_ID + " = ?", new String[]{String.valueOf(taskId)});
+
+        if (rowsUpdated > 0) {
+            Log.d("DatabaseHelper", "Task with ID " + taskId + " marked as done.");
+        } else {
+            Log.e("DatabaseHelper", "Failed to mark task with ID " + taskId + " as done.");
+        }
+
+        db.close();
     }
 
     public void deleteTask(int taskId) {
         SQLiteDatabase db = this.getWritableDatabase();
-        int rowsDeleted = db.delete(TABLE_TASKS, COLUMN_TASK_ID + " = ?", new String[]{String.valueOf(taskId)});
+
+        int rowsDeleted = db.delete(TABLE_COMPLETED_TASKS, COLUMN_COMPLETED_TASK_ID + " = ?", new String[]{String.valueOf(taskId)});
+
         db.close();
 
-        // Check if the task was deleted successfully
         if (rowsDeleted > 0) {
             Log.d("Database", "Task deleted successfully");
         } else {
@@ -186,10 +182,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public Cursor getCompletedTasks() {
         SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT * FROM tasks WHERE status = 1"; // Assuming 1 means completed
-        return db.rawQuery(query, null);
+        return db.rawQuery("SELECT * FROM " + TABLE_COMPLETED_TASKS, null);
     }
-
-
-
 }

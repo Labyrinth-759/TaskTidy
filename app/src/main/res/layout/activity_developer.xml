@@ -55,7 +55,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="8dp"
                 android:text="@string/johnanthony4102_gmail_com"
-                android:textColor="#0277BD" />
+                android:textColor="#69358E" />
 
             <TextView
                 android:id="@+id/developer_role1"
@@ -64,7 +64,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="4dp"
                 android:text="@string/role_frontend_developer_backend_developer"
-                android:textColor="#0277BD"
+                android:textColor="#69358E"
                 android:textStyle="italic" />
 
             <ImageView
@@ -94,7 +94,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="8dp"
                 android:text="@string/valezuelajoshua579_gmail_com"
-                android:textColor="#0277BD" />
+                android:textColor="#69358E" />
 
             <TextView
                 android:id="@+id/developer_role4"
@@ -103,7 +103,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="4dp"
                 android:text="@string/role_frontend_developer_backend_developer"
-                android:textColor="#0277BD"
+                android:textColor="#69358E"
                 android:textStyle="italic" />
 
             <ImageView
@@ -133,7 +133,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="8dp"
                 android:text="@string/nielosinsao90_gmail_com"
-                android:textColor="#0277BD" />
+                android:textColor="#69358E" />
 
             <TextView
                 android:id="@+id/developer_role2"
@@ -142,7 +142,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="4dp"
                 android:text="@string/role_frontend_developer"
-                android:textColor="#0277BD"
+                android:textColor="#69358E"
                 android:textStyle="italic" />
 
             <ImageView
@@ -173,7 +173,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="8dp"
                 android:text="@string/aaronoriasel321_gmail_com"
-                android:textColor="#0277BD" />
+                android:textColor="#69358E" />
 
             <TextView
                 android:id="@+id/developer_role3"
@@ -182,7 +182,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="4dp"
                 android:text="@string/role_backend_developer"
-                android:textColor="#0277BD"
+                android:textColor="#69358E"
                 android:textStyle="italic" />
         </LinearLayout>
     </ScrollView>

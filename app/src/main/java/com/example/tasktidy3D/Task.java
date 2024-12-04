@@ -5,7 +5,7 @@ public class Task {
     private String taskName;
     private String description;
     private int priority;
-    private boolean isDone;  // Add this field
+    private boolean isDone;
 
     public Task(int taskId, String taskName, String description, int priority, boolean isDone) {
         this.taskId = taskId;
@@ -33,11 +33,12 @@ public class Task {
         return priority;
     }
 
-    public boolean isDone() {  // Add this getter method
+    public boolean isDone() {
         return isDone;
     }
 
-    public void setDone(boolean done) {  // Add this setter method
+
+    public void setDone(boolean done) {
         isDone = done;
     }
 }

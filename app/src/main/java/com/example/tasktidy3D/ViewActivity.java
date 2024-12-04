@@ -3,9 +3,7 @@ package com.example.tasktidy3D;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
-
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
+import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,59 +16,70 @@ import java.util.List;
 public class ViewActivity extends AppCompatActivity {
 
     private DatabaseHelper dbHelper;
+    private FloatingActionButton fabAddTask;
     private RecyclerView recyclerViewTasks;
-    private ActivityResultLauncher<Intent> addTaskLauncher;
+    private TaskAdapter adapter;
+    private List<Task> taskList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view);
 
+
+        fabAddTask = findViewById(R.id.fabAddTask);
+
+        fabAddTask.setOnClickListener(v -> {
+            Intent intent = new Intent(ViewActivity.this, AddtaskActivity.class);
+            startActivity(intent);
+        });
+
         dbHelper = new DatabaseHelper(this);
         recyclerViewTasks = findViewById(R.id.recyclerViewTasks);
 
-        // Set RecyclerView LayoutManager
         recyclerViewTasks.setLayoutManager(new LinearLayoutManager(this));
 
-        // Set up ActivityResultLauncher for AddTaskActivity
-        addTaskLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
-            if (result.getResultCode() == RESULT_OK) {
-                // Reload tasks after a new task is added
-                List<Task> taskList = getTasksFromDatabase();
-                TaskAdapter adapter = new TaskAdapter(taskList, this);
-                recyclerViewTasks.setAdapter(adapter);
-            }
-        });
+        loadTasks();
+    }
 
-        // Set up FloatingActionButton for adding new task
-        FloatingActionButton fabAddTask = findViewById(R.id.fabAddTask);
-        fabAddTask.setOnClickListener(v -> {
-            // Launch AddTaskActivity to add a new task
-            Intent intent = new Intent(ViewActivity.this, AddtaskActivity.class);
-            addTaskLauncher.launch(intent);
-        });
-
-        // Load tasks from database and display in RecyclerView
-        List<Task> taskList = getTasksFromDatabase();
-        TaskAdapter adapter = new TaskAdapter(taskList, this);
+    private void loadTasks() {
+        taskList = getTasksFromDatabase();
+        adapter = new TaskAdapter(taskList, this);
         recyclerViewTasks.setAdapter(adapter);
     }
 
     private List<Task> getTasksFromDatabase() {
-        List<Task> taskList = new ArrayList<>();
+        List<Task> tasks = new ArrayList<>();
+        // Retrieve tasks from the database
         Cursor cursor = dbHelper.getAllTasks();
-        while (cursor.moveToNext()) {
-            int id = cursor.getInt(0);
-            String name = cursor.getString(1);
-            String description = cursor.getString(2);
-            int priority = cursor.getInt(3);
-            boolean isDone = cursor.getInt(4) == 1;
+        if (cursor != null) {
+            try {
+                while (cursor.moveToNext()) {
+                    int id = cursor.getInt(0);
+                    String name = cursor.getString(1);
+                    String description = cursor.getString(2);
+                    int priority = cursor.getInt(3);
+                    boolean isDone = cursor.getInt(4) == 1;
 
-            taskList.add(new Task(id, name, description, priority, isDone));
+                    tasks.add(new Task(id, name, description, priority, isDone));
+                }
+            } finally {
+                cursor.close();
+            }
         }
-        cursor.close();
-        return taskList;
+        return tasks;
     }
 
+    // Method to mark task as done and move to completed tasks
+    public void markTaskAsDoneAndShowCompleted(Task task) {
+        // Move the task to completed tasks and update the database
+        boolean result = dbHelper.moveToCompleted(task.getTaskId(), task.getTaskName(), task.getPriority(), task.getDescription());
+        if (result) {
+            Toast.makeText(this, "Task marked as done", Toast.LENGTH_SHORT).show();
+            loadTasks();
+            startActivity(new Intent(ViewActivity.this, CompletedActivity.class));
+        } else {
+            Toast.makeText(this, "Error marking task as completed", Toast.LENGTH_SHORT).show();
+        }
+    }
 }
-
