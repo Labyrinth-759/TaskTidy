@@ -1,10 +1,8 @@
 package com.example.tasktidy3D;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 
-import org.mobileapp.tasktidy.R;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class AboutActivity extends AppCompatActivity {
 

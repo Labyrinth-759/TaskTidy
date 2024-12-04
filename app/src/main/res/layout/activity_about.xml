@@ -19,11 +19,12 @@
 
             <ImageView
                 android:id="@+id/imageView3"
-                android:layout_width="211dp"
-                android:layout_height="202dp"
+                android:layout_width="151dp"
+                android:layout_height="128dp"
                 android:layout_marginTop="36dp"
                 android:contentDescription="@string/logo"
                 android:src="@drawable/logo"
+                android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -32,11 +33,12 @@
                 android:id="@+id/textView4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="4dp"
                 android:text="@string/tasktidy"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
@@ -61,6 +63,7 @@
                 android:justificationMode="inter_word"
                 android:text="@string/aboutdesc"
                 app:layout_constraintEnd_toEndOf="parent"
+                android:textSize="14sp"
                 app:layout_constraintHorizontal_bias="0.489"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/textView5"
@@ -89,6 +92,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.491"
                 app:layout_constraintStart_toStartOf="parent"
+                android:textSize="14sp"
                 app:layout_constraintTop_toBottomOf="@+id/textView6"
                 tools:ignore="TextContrastCheck" />
 
@@ -109,6 +113,7 @@
                 android:id="@+id/textView11"
                 android:layout_width="336dp"
                 android:layout_height="134dp"
+                android:textSize="14sp"
                 android:layout_marginTop="16dp"
                 android:text="@string/aboutf3"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -120,6 +125,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
+                android:textSize="15sp"
                 android:text="@string/about1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.175"
@@ -130,6 +136,7 @@
                 android:id="@+id/textView13"
                 android:layout_width="327dp"
                 android:layout_height="137dp"
+                android:textSize="14sp"
                 android:layout_marginTop="16dp"
                 android:text="@string/about1desc"
                 app:layout_constraintEnd_toEndOf="parent"
