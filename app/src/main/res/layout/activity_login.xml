@@ -49,15 +49,15 @@
         android:layout_width="167dp"
         android:layout_height="57dp"
         android:layout_marginBottom="100dp"
+        android:background="@drawable/violet"
+        android:padding="10dp"
         android:text="@string/btnlogin"
         android:textSize="18sp"
-        android:padding="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf=""
-        android:background="@drawable/violet"
-        app:layout_constraintVertical_bias="0.839" />
+        app:layout_constraintTop_toBottomOf="@+id/tvAcc"
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/tvAcc"

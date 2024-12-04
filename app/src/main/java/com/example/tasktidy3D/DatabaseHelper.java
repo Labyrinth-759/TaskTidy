@@ -24,7 +24,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        // Create Tasks Table with priority and description
+        String CREATE_USERS_TABLE = "CREATE TABLE Users (" +
+                "user_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "email TEXT UNIQUE, " +
+                "password TEXT)";
+        db.execSQL(CREATE_USERS_TABLE);
+
         String CREATE_TASKS_TABLE = "CREATE TABLE " + TABLE_TASKS + " (" +
                 COLUMN_TASK_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 COLUMN_TASK_NAME + " TEXT, " +
@@ -32,6 +37,30 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 COLUMN_TASK_DRP + " TEXT)";
         db.execSQL(CREATE_TASKS_TABLE);
     }
+
+
+
+    public boolean AddUser(String email, String password) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("email", email);    // Column name for email
+        values.put("password", password);  // Column name for password
+
+        long result = db.insert("Users", null, values); // "Users" table should exist
+        db.close();
+        return result != -1;
+    }
+
+    public boolean checkUser(String email, String password) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT * FROM Users WHERE email = ? AND password = ?";
+        Cursor cursor = db.rawQuery(query, new String[]{email, password});
+        boolean exists = cursor.getCount() > 0;
+        cursor.close();
+        db.close();
+        return exists;
+    }
+
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
@@ -57,4 +86,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         return db.rawQuery("SELECT * FROM " + TABLE_TASKS, null);
     }
+
+
+
+
 }
